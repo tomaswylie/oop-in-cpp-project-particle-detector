@@ -34,23 +34,22 @@ public:
   ~FourMomentum();
 
   // Overloaded addition operator to take addition of four-momenta
-  FourMomentum operator+(FourMomentum& v);
+  FourMomentum operator+(const FourMomentum& v) const noexcept;
 
   // Overloaded subtraction operator to take subtraction of four-momenta
-  FourMomentum operator-(FourMomentum& v);
+  FourMomentum operator-(const FourMomentum& v) const;
 
   // Overloaded multiplication operator to take the inner product of two four-momenta
-  double operator*(FourMomentum& v);
+  double operator*(const FourMomentum& v) const;
 
   // Overloaded division operator to take scalar division of four-momenta objects
-  FourMomentum operator/(double a);
-
+  FourMomentum operator/(const double a) const;
 
   // Overloaded multiplication operator to support right side scalar multiplication
-  FourMomentum operator*(double a);
+  FourMomentum operator*(const double a) const;
 
   // Overloaded multiplication operator as a friend of the class to support left side scalar multiplication
-  friend FourMomentum operator*(double a, FourMomentum& v);
+  friend FourMomentum operator*(const double a, const FourMomentum& v);
 
   // Overloading the ostream operator "<<" as a friend of the class
   friend std::ostream& operator<<(std::ostream& os, const FourMomentum& mom);

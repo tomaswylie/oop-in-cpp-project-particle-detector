@@ -1,6 +1,6 @@
-// Detector.h
+// SubDetector.h
 
-// Header file of the Detector.h class
+// Interface of the SubDetector abstract base class
 
 // Student ID: 10831050, last updated: 21/04/25
 
@@ -16,13 +16,18 @@
 
 class SubDetector
 {
-private:
-
 protected:
+  std::string detector_type;
+  std::string material;
 
 public:
 
-}
+  // Virtual destructor
+  virtual ~SubDetector() = default;
+
+  // Pure virtual print function
+  virtual void print_detector() = 0;
+};
 
 
 #endif
