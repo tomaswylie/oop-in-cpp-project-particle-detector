@@ -12,8 +12,8 @@ Calorimeter::Calorimeter() :
 {};
 
 // Parameterised constructor
-Calorimeter::Calorimeter(std::string detector_type_in, std::string material_in, int number_of_crystals_in) :
-  SubDetector(detector_type_in, material_in), number_of_crystals{number_of_crystals_in}
+Calorimeter::Calorimeter(std::string material_in, int number_of_crystals_in) :
+  SubDetector("Calorimeter", material_in), number_of_crystals{number_of_crystals_in}
 {
   if(!(number_of_crystals_in >= 0)) {throw std::invalid_argument("Number of crystals must be a positive integer.");}
 };

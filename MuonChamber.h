@@ -12,8 +12,21 @@
 class MuonChamber: public SubDetector
 {
 protected:
-  
+  int number_of_drift_tubes;
 public:
+  
+  // Defualt constructor
+  MuonChamber();
+
+  // Parameterised constructor
+  MuonChamber(std::string material_in, int number_of_drift_tubes_in);
+
+  // Destructor
+  ~MuonChamber();
+
+  // Overrided print_detector function
+  void print_detector() const;
+
 };
 
 #endif

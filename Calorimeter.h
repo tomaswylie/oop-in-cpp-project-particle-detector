@@ -20,7 +20,7 @@ public:
   Calorimeter();
 
   // Parameterised constructor
-  Calorimeter(std::string detector_type_in, std::string material_in, int number_of_crystals_in);
+  Calorimeter(std::string material_in, int number_of_crystals_in);
 
   // Destructor
   ~Calorimeter();
