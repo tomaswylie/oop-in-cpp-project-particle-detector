@@ -71,3 +71,28 @@ std::ostream& operator<<(std::ostream& os, const FourMomentum& mom)
   os<<"("<<mom.E<<", "<<mom.px<<", "<<mom.py<<", "<<mom.pz<<")";
   return os;
 }
+
+// Overloaded array index selection operator []
+double FourMomentum::operator[](const size_t i) const
+{
+  if(i==0)
+  {
+    return E;
+  }
+  else if(i==1)
+  {
+    return px;
+  }
+  else if(i==2)
+  {
+    return py;
+  }
+  else if(i==3)
+  {
+    return pz;
+  }
+  else
+  {
+    std::invalid_argument("Invalid index used.");
+  }
+}

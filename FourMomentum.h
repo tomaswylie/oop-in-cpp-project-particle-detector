@@ -54,6 +54,14 @@ public:
   // Overloading the ostream operator "<<" as a friend of the class
   friend std::ostream& operator<<(std::ostream& os, const FourMomentum& mom);
 
+  // Overloaded the array index operator to get four momentum components 
+  double operator[](const size_t i) const;
+
+  // Getters for each component of Four Momentum
+  double get_E() const;
+  double get_px() const;
+  double get_py() const;
+  double get_pz()
 };
 
 #endif
