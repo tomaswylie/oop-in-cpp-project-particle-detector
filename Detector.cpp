@@ -2,85 +2,70 @@
 
 // Implementation of the Detector object
 
-// Student ID: 10831050, last updated: 28/04/25
+// Student ID: 10831050, last updated: 18/05/25
 
 #include "Detector.h"
 
+// Constructor
 Detector::Detector(std::string detector_name_in) :
   detector_name{detector_name_in}
-{subdetectors = {};};
+{};
 
+// Destructor
 Detector::~Detector(){};
 
-void Detector::add(SubDetector& component)
+// Function to add a subdetector to the detector object and store in lists dependent on detector type
+void Detector::add(std::unique_ptr<SubDetector> component)
 {
-  subdetectors.push_back(std::make_unique<SubDetector>(component));
+  if(component->get_detector_type() == "Tracker")
+  {
+    trackers.push_back(std::move(component));
+  }
+  else if(component->get_detector_type() == "Calorimeter")
+  {
+    calorimeters.push_back(std::move(component));
+  }
+  else if(component->get_detector_type() == "MuonChamber")
+  {
+    muonchambers.push_back(std::move(component));
+  }
 }
 
-void Detector::display()
+void Detector::display() const
 {
-  std::vector<std::unique_ptr<SubDetector>> list{subdetectors};
-  std::vector<std::unique_ptr<SubDetector>>::iterator it; // Iterator
-  std::vector<std::unique_ptr<SubDetector>> ordered_list{{}}; // Might not need
-  std::vector<std::unique_ptr<SubDetector>> tracker_list{{}};
-  std::vector<std::unique_ptr<SubDetector>> calorimeter_list{{}};
-  std::vector<std::unique_ptr<SubDetector>> muonchamber_list{{}};
+  std::cout<<"Detector name: "<<detector_name<<std::endl;
 
-
-  // Iterator to sort the list of detectors in order of type of detector
-  for(it = (list).begin(); it != list.end(); ++it)
+  if(!trackers.empty())
   {
-    if((*it)->get_detector_type() == "Tracker")
-    {
-      tracker_list.push_back(*it);
-      list.erase(it);
-    }
-    else if((*it)->get_detector_type() == "Calorimeter")
-    {
-      calorimeter_list.push_back(*it);
-      list.erase(it);
-    }
-    else if((*it)->get_detector_type() == "MuonChamber")
-    {
-      muonchamber_list.push_back(*it);
-      list.erase(it);
-    }
-  }
+    std::cout<<"\tTrackers:"<<std::endl;
 
-  if(tracker_list.size() != 0)
-  {
-    std::cout<<"Trackers:"<<std::endl;
-
-    for(std::unique_ptr<SubDetector>& i : tracker_list)
+    for(const std::unique_ptr<SubDetector>& i : trackers)
     {
-      std::cout<<"\t";
+      std::cout<<"\t\t";
       i->print_detector();
     }
   }
 
-  if(calorimeter_list.size() != 0)
+  if(!calorimeters.empty())
   {
-    std::cout<<"Calorimeters:"<<std::endl;
+    std::cout<<"\tCalorimeters:"<<std::endl;
 
-    for(std::unique_ptr<SubDetector>& i : calorimeter_list)
+    for(const std::unique_ptr<SubDetector>& i : calorimeters)
     {
-      std::cout<<"\t";
+      std::cout<<"\t\t";
       i->print_detector();
     }
   }
 
-  if(muonchamber_list.size() != 0)
+  if(!muonchambers.empty())
   {
-    std::cout<<"Muon chambers:"<<std::endl;
+    std::cout<<"\tMuon chambers:"<<std::endl;
 
-    for(std::unique_ptr<SubDetector>& i : muonchamber_list)
+    for(const std::unique_ptr<SubDetector>& i : muonchambers)
     {
-      std::cout<<"\t";
+      std::cout<<"\t\t";
       i->print_detector();
     }
   }
-
-  
-
 }
 
