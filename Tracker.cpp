@@ -21,7 +21,27 @@ Tracker::Tracker(std::string material_in, int number_of_layers_in) :
 // Destructor
 Tracker::~Tracker(){};
 
+// Overrided print_detector function for tracker
 void Tracker::print_detector() const
 {
   std::cout<<"\033[1;37mTracker:\033[0m "<<"Material: "<<material<<", Number of layers: "<<number_of_layers<<std::endl;
+}
+
+// Getter for detector type
+std::string Tracker::get_detector_type() const {return detector_type;}
+
+// Getter for material type
+std::string Tracker::get_material() const {return material;}
+
+// Overrided detected function for tracker
+double Tracker::detected(Particle& p)
+{
+  if(p.get_charge() != 0)
+  {
+    return p.get_momentum()[0];
+  }
+  else
+  {
+    return 0;
+  }
 }

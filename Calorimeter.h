@@ -28,6 +28,15 @@ public:
   // Overrides the print_data function for calorimeter
   void print_detector() const;
 
+  // Getter for detector type
+  std::string get_detector_type() const;
+
+  // Getter for material type
+  std::string get_material() const;
+
+  // Overrided detected function for calorimeter
+  double detected(Particle& p);
+
 
 };
 

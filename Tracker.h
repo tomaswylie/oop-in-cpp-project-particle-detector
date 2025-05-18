@@ -28,6 +28,15 @@ public:
   // Overrides the print_detector function for tracker
   void print_detector() const;
 
+  // Getter for detector type
+  std::string get_detector_type() const;
+
+  // Getter for material type
+  std::string get_material() const;
+
+  // Overrides the detected function for tracker
+  double detected(Particle& p)
+
 };
 
 #endif

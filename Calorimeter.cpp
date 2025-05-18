@@ -26,3 +26,22 @@ void Calorimeter::print_detector() const
 {
   std::cout<<"\033[1;37mCalorimeter:\033[0m "<<"Material: "<<material<<", Number of crystals: "<<number_of_crystals<<std::endl;
 }
+
+// Getter for detector type
+std::string Calorimeter::get_detector_type() const {return detector_type;}
+
+// Getter for material type
+std::string Calorimeter::get_material() const {return material;}
+
+// Overrided detected function for calorimeter
+double Calorimeter::detected(Particle& p)
+{
+  if(p.get_particle_type() != "muon" || p.get_particle_type() != "antimuon")
+  {
+    return p.get_momentum()[0];
+  }
+  else
+  {
+    return 0;
+  }
+}
