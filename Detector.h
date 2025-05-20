@@ -31,6 +31,9 @@ public:
   // Function to display the configuration of the detector
   void display() const;
 
+  // Function to pass a particle through each detector component and determine what particle it is
+  void pass_through(Particle& p) const;
+
   
 
 };

@@ -69,3 +69,59 @@ void Detector::display() const
   }
 }
 
+// Passes a particle through each detector component and determines what particle it is based on what each detector type detects
+void Detector::pass_through(Particle& p) const
+{
+  double energy_detected;
+  bool tracker_detected{false};
+  bool calorimeter_detected{false};
+  bool muonchamber_detected{false};
+  int n{0};
+    
+  for(const auto& i : trackers)
+  {
+    n+=1;
+    energy_detected = i->detected(p);
+    std::cout<<"Detected energy in Tracker "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
+    if(energy_detected != 0) {tracker_detected = true;}
+  }
+
+  n, energy_detected = 0;
+
+  for(const auto& i : calorimeters)
+  {
+    n+=1;
+    energy_detected = i->detected(p);
+    std::cout<<"Detected energy in Calorimeter "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
+    if(energy_detected != 0) {calorimeter_detected = true;}
+  }
+
+  n, energy_detected = 0;
+
+  for(const auto& i : muonchambers)
+  {
+    n+=1;
+    energy_detected = i->detected(p);
+    std::cout<<"Detected energy in Muon Chamber "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
+    if(energy_detected != 0) {muonchamber_detected = true;}
+  }
+
+  if(tracker_detected == true && calorimeter_detected == true && muonchamber_detected == false)
+  {
+
+    std::cout<<((p.get_charge()*p.get_charge() == 1) ? "Particle detected as an electron.":"Particle detected as a hadron.")<<std::endl;
+  }
+  else if(tracker_detected == true && calorimeter_detected == false && muonchamber_detected == true)
+  {
+    std::cout<<"Particle detected as a muon."<<std::endl;
+  }
+  else if(tracker_detected == false && calorimeter_detected == true && muonchamber_detected == false)
+  {
+    std::cout<<"Particle detected as a photon."<<std::endl;
+  }
+  else
+  {
+    std::cout<<"No particle detected."<<std::endl;
+  }
+}
+
