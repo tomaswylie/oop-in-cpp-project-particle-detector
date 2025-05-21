@@ -1,2 +1,2 @@
 # Terminal command to run particle detector simulation
-"g++-11 -g main.cpp /Users/tomas/oop_in_cpp/Project/project-particle-detector-tomaswylie/Detector.cpp Tracker.cpp Calorimeter.cpp MuonChamber.cpp FourMomentum.cpp Particle.cpp Electron.cpp Muon.cpp Photon.cpp Proton.cpp Neutron.cpp -o file -std=gnu++17"
+"g++-11 -g main.cpp Detector.cpp Tracker.cpp Calorimeter.cpp MuonChamber.cpp FourMomentum.cpp Particle.cpp Electron.cpp Muon.cpp Photon.cpp Proton.cpp Neutron.cpp -o file -std=gnu++17"
