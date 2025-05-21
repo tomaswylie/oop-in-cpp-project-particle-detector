@@ -36,7 +36,7 @@ std::string Calorimeter::get_material() const {return material;}
 // Overrided detected function for calorimeter
 double Calorimeter::detected(Particle& p)
 {
-  if(p.get_particle_type() != "muon" || p.get_particle_type() != "antimuon")
+  if(p.get_particle_type() != "muon" && p.get_particle_type() != "antimuon")
   {
     return p.get_momentum()[0];
   }
