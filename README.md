@@ -1,1 +1,2 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/jNsaiKCH)
+# Terminal command to run particle detector simulation
+"g++-11 -g main.cpp /Users/tomas/oop_in_cpp/Project/project-particle-detector-tomaswylie/Detector.cpp Tracker.cpp Calorimeter.cpp MuonChamber.cpp FourMomentum.cpp Particle.cpp Electron.cpp Muon.cpp Photon.cpp Proton.cpp Neutron.cpp -o file -std=gnu++17"
