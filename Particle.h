@@ -19,18 +19,22 @@
 class Particle
 {
 protected:
+  int ID;
   std::string particle_type;
   double charge; // Double as to support fractional charges for quarks
   double rest_mass; // In MeV
   std::unique_ptr<FourMomentum> momentum;
 
   // Protected parameterised constructor acessible only by derived classes
-  Particle(std::string particle_type_in, double charge_in, double rest_mass_in, FourMomentum& mom_in);
+  Particle(int ID_in, std::string particle_type_in, double charge_in, double rest_mass_in, std::vector<double> mom_in);
 
 public:
 
   // Virtual destructor
   virtual ~Particle() = default;
+
+  // Pure virtual print particle function
+  virtual void print_particle() const = 0;
 
   // Setter functions
   void set_particle_type(std::string particle_type_in);
