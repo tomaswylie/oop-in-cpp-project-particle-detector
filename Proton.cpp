@@ -19,7 +19,7 @@ Proton::Proton(int ID_in, const std::vector<double> momentum_in, bool is_antipar
 // Destructor 
 Proton::~Proton(){};
 
-// Function to print the information of the electron
+// Function to print the information of the proton
 void Proton::print_particle() const
 {
   std::cout<<((charge<0) ? "Anti-proton: ":"Proton: ")<<"ID: "<<ID<<", Charge: "<<charge<<", Actual total energy: "

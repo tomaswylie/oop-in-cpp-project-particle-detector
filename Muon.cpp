@@ -19,7 +19,7 @@ Muon::Muon(int ID_in, const std::vector<double> momentum_in, bool is_antiparticl
 // Destructor 
 Muon::~Muon(){};
 
-// Function to print the information of the electron
+// Function to print the information of the muon
 void Muon::print_particle() const
 {
   std::cout<<((charge<0) ? "Muon: ":"Anti-muon: ")<<"ID: "<<ID<<", Charge: "<<charge<<", Actual total energy: "

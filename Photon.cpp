@@ -19,7 +19,7 @@ Photon::Photon(int ID_in, const std::vector<double> momentum_in) :
 // Destructor 
 Photon::~Photon(){};
 
-// Function to print the information of the electron
+// Function to print the information of the photon
 void Photon::print_particle() const
 {
   std::cout<<"Photon: "<<"ID: "<<ID<<", Charge: "<<charge<<", Actual total energy: "
