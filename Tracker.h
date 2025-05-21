@@ -35,7 +35,7 @@ public:
   std::string get_material() const;
 
   // Overrides the detected function for tracker
-  double detected(Particle& p)
+  double detected(Particle& p);
 
 };
 
