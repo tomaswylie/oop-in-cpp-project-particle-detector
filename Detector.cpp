@@ -112,11 +112,12 @@ void Detector::pass_through(Particle& p) const
   if(tracker_detected == true && calorimeter_detected == true && muonchamber_detected == false)
   {
 
-    std::cout<<((p.get_charge()*p.get_charge() == 1) ? "\tParticle detected as an electron.":"\tParticle detected as a hadron.")<<std::endl;
+    std::cout<<((p.get_charge()*p.get_charge() == 1) ? ((p.get_charge() < 0) ? "\tParticle detected as an electron."
+               :"\tParticle detected as a positron."):"\tParticle detected as a hadron.")<<std::endl;
   }
   else if(tracker_detected == true && calorimeter_detected == false && muonchamber_detected == true)
   {
-    std::cout<<"\tParticle detected as a muon."<<std::endl;
+    std::cout<<((p.get_charge() < 0) ? "\tParticle detected as a muon.":"\tParticle detected as an anti-muon.")<<std::endl;
   }
   else if(tracker_detected == false && calorimeter_detected == true && muonchamber_detected == false)
   {
