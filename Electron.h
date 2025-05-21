@@ -17,14 +17,17 @@ protected:
 public:
 
   // Default constuctor
-  Electron(bool is_antiparticle = false);
+  Electron(int ID_in, bool is_antiparticle = false);
 
   // Parameterised constructor
-  Electron(std::vector<double> momentum_in, bool is_antiparticle = false);
+  Electron(int ID_in, const std::vector<double> momentum_in, bool is_antiparticle = false);
 
   // Destructor
   ~Electron();
-  
+
+  // Overrided print_particle function
+  void print_particle() const;
+
 };
 
 #endif
