@@ -85,7 +85,7 @@ void Detector::pass_through(Particle& p) const
   {
     n+=1;
     energy_detected = i->detected(p);
-    std::cout<<"\tDetected energy in Tracker "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
+    std::cout<<"\t\tDetected energy in Tracker "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
     if(energy_detected != 0) {tracker_detected = true;}
   }
 
@@ -95,7 +95,7 @@ void Detector::pass_through(Particle& p) const
   {
     n+=1;
     energy_detected = i->detected(p);
-    std::cout<<"\tDetected energy in Calorimeter "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
+    std::cout<<"\t\tDetected energy in Calorimeter "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
     if(energy_detected != 0) {calorimeter_detected = true;}
   }
 
@@ -105,27 +105,40 @@ void Detector::pass_through(Particle& p) const
   {
     n+=1;
     energy_detected = i->detected(p);
-    std::cout<<"\tDetected energy in Muon Chamber "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
+    std::cout<<"\t\tDetected energy in Muon Chamber "<<n<<": "<<std::setprecision(3)<<energy_detected * 1e-3<<" GeV"<<std::endl;
     if(energy_detected != 0) {muonchamber_detected = true;}
   }
 
   if(tracker_detected == true && calorimeter_detected == true && muonchamber_detected == false)
   {
-
-    std::cout<<((p.get_charge()*p.get_charge() == 1) ? ((p.get_charge() < 0) ? "\tParticle detected as an electron."
-               :"\tParticle detected as a positron."):"\tParticle detected as a hadron.")<<std::endl;
+    if(p.get_rest_mass() == 0.511)
+    {
+      std::cout<<((p.get_charge() < 0) ? "\t\tParticle detected as an electron.":"\t\tParticle detected as a positron.")<<std::endl;
+    }
+    else
+    {
+      std::cout<<((p.get_charge()>0) ? "\t\tParticle detected as a proton.":"\t\tParticle detected as an anti-proton.")<<std::endl;
+    }
   }
   else if(tracker_detected == true && calorimeter_detected == false && muonchamber_detected == true)
   {
-    std::cout<<((p.get_charge() < 0) ? "\tParticle detected as a muon.":"\tParticle detected as an anti-muon.")<<std::endl;
+    std::cout<<((p.get_charge() < 0) ? "\t\tParticle detected as a muon.":"\t\tParticle detected as an anti-muon.")<<std::endl;
   }
   else if(tracker_detected == false && calorimeter_detected == true && muonchamber_detected == false)
   {
-    std::cout<<"\tParticle detected as a photon."<<std::endl;
+    if(p.get_rest_mass() == 0)
+    {
+      std::cout<<"\t\tParticle detected as a photon."<<std::endl;
+    }
+    else
+    {
+      std::cout<<((p.get_particle_type()=="neutron") ? "\t\tParticle detected as a neutron.":
+                  "\t\tParticle detected as an anti-neutron.")<<std::endl;
+    }  
   }
   else
   {
-    std::cout<<"\tNo particle detected."<<std::endl;
+    std::cout<<"\t\tNo particle detected."<<std::endl;
   }
 }
 
