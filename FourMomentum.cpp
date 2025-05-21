@@ -93,6 +93,6 @@ double FourMomentum::operator[](const size_t i) const
   }
   else
   {
-    std::invalid_argument("Invalid index used.");
+    throw std::invalid_argument("Invalid index used.");
   }
 }
